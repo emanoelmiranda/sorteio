@@ -1,0 +1,80 @@
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	padding: 0px;
+	margin: 0px;
+	font-size: 16px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+ul {
+	list-style: none;
+}
+
+#lista-de-numeros,
+#lista-de-numeros-sorteados {
+	width: 800px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+#lista-de-numeros-sorteados ul,
+#lista-de-numeros ul {
+	display: table;
+}
+
+#lista-de-numeros ul li,
+#lista-de-numeros-sorteados ul li {
+	width: 40px;
+	height: 40px;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	display: inline-block;;
+	border: 1px solid #ccc;
+	margin: 2px;
+	border-radius: 50%;
+}
+
+#lista-de-numeros-sorteados h4 {
+	text-align: center;
+	
+}
+
+#lista-de-numeros-sorteados {
+	width: 265px;
+	margin: 0 auto;
+}
+
+#painel-botao{
+	text-align: center;
+	margin-top: 20px;
+}
+
+button {
+	outline: none;
+	padding: 12px 17px;
+	font-size: 14px;
+	border: 1px solid #F00;
+	background-color: #E00;
+	color: #fff;
+	border-radius: 3px;
+	box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+button:active {
+	box-shadow: inset 3px 3px 3px rgba(0,0,0,.3);
+}
