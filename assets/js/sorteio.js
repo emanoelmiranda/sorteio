@@ -1,4 +1,3 @@
-
 /**
  * Função com implementação de sorteio de números aleatoriamente.
  *
@@ -7,13 +6,16 @@
  * @return this
  */
 var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
-	quantidaDeNumeros 	= quantidaDeNumeros || 6;
-	totalDeNumeros 		= totalDeNumeros || 60;
+	quantidaDeNumeros  				= quantidaDeNumeros || 6;
+	totalDeNumeros 		 				= totalDeNumeros || 60;
 
-	var arrayDeNumeros 	= [],
-		that 			= this,
+	var arrayDeNumeros 				= [],
+		that 										= this,
+		numeroDeTentativas 			= 0,
 		arrayDeNumerosSorteados = [],
-		_carregarArrayNumeros;
+		numeroAtualSorteado,
+		carregarArrayNumeros,
+		algoritmoRandomico
 
 	/**
 	 * Carrega todos os possíveis números
@@ -21,7 +23,7 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 	 *
 	 * @return this 
 	 */
-	_carregarArrayNumeros = function () {
+	carregarArrayNumeros = function () {
 		for (var i = 0; i < totalDeNumeros; i++) {
 			arrayDeNumeros[i] = {
 				valor: i + 1,
@@ -31,6 +33,15 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 
 		return that;
 	};
+
+	/**
+	 * Retorna número gerado aleatoriamente de duas casas decimais.
+	 *
+	 * @return int
+	 */
+	algoritmoRandomico = function () {
+		return Math.floor(Math.random() * 100);
+	}
 
 	/**
 	 * Retorna array de números possíveis para sorteio.
@@ -62,22 +73,72 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 	 * @return void 
 	 */
 	this.sortear = function () {
-		var numeroDeTentativas = 0;
+		var chaveParaSortearNumero = algoritmoRandomico();
 
-		while (numeroDeTentativas < quantidaDeNumeros) {
-			var chaveParaSortearNumero = Math.floor(Math.random() * 100);
-		
-			if (chaveParaSortearNumero >= 0 && chaveParaSortearNumero < totalDeNumeros) {
-				var numeroSorteado = arrayDeNumeros[chaveParaSortearNumero];
+		if (chaveParaSortearNumero >= 0 && chaveParaSortearNumero < totalDeNumeros) {
+			var numeroSorteado = arrayDeNumeros[chaveParaSortearNumero];
 
-				if (numeroSorteado.sorteado === false) {
-					arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
-					arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
-					numeroDeTentativas++;
-				}
+			if (numeroSorteado.sorteado === false) {
+				arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
+				arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
+				numeroDeTentativas++;
+			} else {
+				that.sortear();	
 			}
+		} else {
+			that.sortear();
 		}
+	};
+
+	/**
+	 * Reinicializa o sorteio.
+	 *
+	 * @return void
+	 */
+	this.reiniciarSorteio = function () {
+		arrayDeNumerosSorteados = [];
+		numeroDeTentativas = [];
 	}
 
-	return _carregarArrayNumeros();	
+	/**
+	 * Retona número da tentativa atual do sorteio
+	 *
+	 * @return int
+	 */
+	this.retornarNumeroDaTentativaAtual = function () {
+		return numeroDeTentativas;
+	}
+
+	/**
+	 * Retona número sorteado da pela tentativa passada.
+	 *
+	 * @param int numeroDaTentativa
+	 * @return int
+	 */
+	this.retornarNumeroSorteado = function (numeroDaTentativa) {
+		numeroDaTentativa = numeroDaTentativa || that.retornarNumeroDaTentativaAtual();
+
+		return arrayDeNumerosSorteados[numeroDaTentativa - 1];
+	}
+
+	this.sortearSequencia = function () {
+		var sequencia = [],
+				_chaveParaSortearNumero = algoritmoRandomico();
+
+		if (_chaveParaSortearNumero >= 0 && _chaveParaSortearNumero < totalDeNumeros) {
+			var _numeroSorteado = _arrayDeNumeros[_chaveParaSortearNumero];
+
+			if (numeroSorteado.sorteado === false) {
+				arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
+				arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
+				numeroDeTentativas++;
+			} else {
+				that.sortear();	
+			}
+		} else {
+			that.sortear();
+		}		
+	}
+
+	return carregarArrayNumeros();	
 };

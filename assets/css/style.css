@@ -13,48 +13,85 @@ body {
 }
 
 h1 {
-	text-align: center;
-	margin-bottom: 30px;
+	margin-top: 40px;
+	font-size: 60px;
 }
 
 ul {
 	list-style: none;
 }
 
+.container-principal {
+	width: 1170px;
+	margin: 0 auto;
+}
+
+.container-sorteio {
+	float: left;
+	width: 800px;
+}
+
+.container-sequencias {
+	position: fixed;
+	height: 100%;
+	top: 0;
+	right: 0;
+	width: 350px;
+  padding: 20px;
+  border: 5px solid #ccc;
+}
+
+.container-sequencias h3 {
+	margin-bottom: 20px;
+}
+
+.linha {
+	display: table;
+	width: 100%;
+}
+
+.coluna-3 {
+	float: left;
+	width: 33%;
+}
+
+.alinhar-texto-centro {
+	text-align: center;	
+}
+
+.alinhar-texto-justificado {
+	text-align: justify;
+}
+
 #lista-de-numeros,
 #lista-de-numeros-sorteados {
-	width: 800px;
-	margin: 0 auto;
 	margin-top: 40px;
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 
 #lista-de-numeros-sorteados ul,
-#lista-de-numeros ul {
+#lista-de-numeros ul,
+#sequencias-numericas > div {
 	display: table;
 }
 
 #lista-de-numeros ul li,
-#lista-de-numeros-sorteados ul li {
-	width: 40px;
-	height: 40px;
+#lista-de-numeros-sorteados ul li,
+#sequencias-numericas > div span {
+	width: 35px;
+	height: 35px;
 	float: left;
-	line-height: 40px;
+	line-height: 35px;
 	text-align: center;
 	display: inline-block;;
 	border: 1px solid #ccc;
 	margin: 2px;
-	border-radius: 50%;
+	border-radius: 3px;
+	box-shadow: 0px 0px 5px rgba(0,0,0,.5);
 }
 
 #lista-de-numeros-sorteados h4 {
 	text-align: center;
-	
-}
-
-#lista-de-numeros-sorteados {
-	width: 265px;
-	margin: 0 auto;
 }
 
 #painel-botao{
@@ -62,9 +99,19 @@ ul {
 	margin-top: 20px;
 }
 
+#painel-de-andamento {
+	font-size: 18px;
+	margin-top: 20px;
+	min-height: 80px;
+	border: 5px solid #ccc;
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}	
+
 button {
 	outline: none;
-	padding: 12px 17px;
+	padding: 10px 15px;
 	font-size: 14px;
 	border: 1px solid #F00;
 	background-color: #E00;
@@ -82,4 +129,27 @@ button:active {
 .link-github {
 	margin-top: 10px;
 	text-align: center;
+	clear: both;;
+}
+
+.numero-sorteado {
+	background-color: #ccc;
+	color: #fff;
+	box-shadow: inset 2px 2px 2px rgba(0,0,0,.5) !important;
+	animation: numeroSorteado 1s ease-in;
+}
+
+#painel-sequencias-vencedoras {
+	color: #0F0;
+	animation: numeroSorteado 1s ease-in;
+}
+
+@keyframes numeroSorteado {
+	from {
+		transform: scale(2);
+	}
+
+	to {
+		transform: scale(1);
+	}
 }
