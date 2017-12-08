@@ -15,7 +15,7 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 		arrayDeNumerosSorteados = [],
 		numeroAtualSorteado,
 		carregarArrayNumeros,
-		algoritmoRandomico
+		algoritmoRandomico;
 
 	/**
 	 * Carrega todos os possíveis números
@@ -75,16 +75,16 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 	this.sortear = function () {
 		var chaveParaSortearNumero = algoritmoRandomico();
 
-		if (chaveParaSortearNumero >= 0 && chaveParaSortearNumero < totalDeNumeros) {
+		if (
+			chaveParaSortearNumero >= 0 && 
+			chaveParaSortearNumero < totalDeNumeros && 
+			arrayDeNumeros[chaveParaSortearNumero].sorteado === false
+		) {
 			var numeroSorteado = arrayDeNumeros[chaveParaSortearNumero];
 
-			if (numeroSorteado.sorteado === false) {
-				arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
-				arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
-				numeroDeTentativas++;
-			} else {
-				that.sortear();	
-			}
+			arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
+			arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
+			numeroDeTentativas++;	
 		} else {
 			that.sortear();
 		}
@@ -97,7 +97,11 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 	 */
 	this.reiniciarSorteio = function () {
 		arrayDeNumerosSorteados = [];
-		numeroDeTentativas = [];
+		numeroDeTentativas = 0;
+
+		for (var i = 0; i < arrayDeNumeros.length; i++) {
+			arrayDeNumeros[i].sorteado = false;
+		}
 	}
 
 	/**
@@ -121,23 +125,24 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 		return arrayDeNumerosSorteados[numeroDaTentativa - 1];
 	}
 
-	this.sortearSequencia = function () {
-		var sequencia = [],
-				_chaveParaSortearNumero = algoritmoRandomico();
+	/**
+	 * Sorteia uma sequência de números (array).
+	 *
+	 * @param int totalDeNumerosDaSequencia Quantidade de numeros da sequencia
+	 * @return int
+	 */
+	this.sortearSequenciaNumerica = function (totalDeNumerosDaSequencia) {
+		totalDeNumerosDaSequencia = totalDeNumerosDaSequencia || 6;
 
-		if (_chaveParaSortearNumero >= 0 && _chaveParaSortearNumero < totalDeNumeros) {
-			var _numeroSorteado = _arrayDeNumeros[_chaveParaSortearNumero];
-
-			if (numeroSorteado.sorteado === false) {
-				arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
-				arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
-				numeroDeTentativas++;
-			} else {
-				that.sortear();	
-			}
-		} else {
+		for (var i = 0; i < totalDeNumerosDaSequencia; i++) {
 			that.sortear();
-		}		
+		}
+
+		var arrayDeNumerosSorteados = that.retornarArrayDeNumerosSorteados();
+
+		that.reiniciarSorteio();
+
+		return arrayDeNumerosSorteados;
 	}
 
 	return carregarArrayNumeros();	
