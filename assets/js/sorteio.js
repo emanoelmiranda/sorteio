@@ -21,7 +21,7 @@ var Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 	 * Carrega todos os possíveis números
 	 * a serem sorteados.
 	 *
-	 * @return this 
+	 * @return this
 	 */
 	carregarArrayNumeros = function () {
 		for (var i = 0; i < totalDeNumeros; i++) {

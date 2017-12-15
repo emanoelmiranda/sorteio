@@ -22,7 +22,7 @@ var Sequencia = function (elemento, opcoes) {
 	 * @param array lista array de números a serem renderizados
 	 * @param return void
 	 */
-	var adicionarItensNaLista = function (lista) {
+	function adicionarItensNaLista(lista) {
 		for (var i = 0; i < lista.length; i++) {
 			var elementoNumeroDaSequencia = document.createElement('SPAN');
 
@@ -32,7 +32,7 @@ var Sequencia = function (elemento, opcoes) {
 		}
 	};
 
-	var adicionarSequenciaNoElemento = function (_elemento) {
+	function adicionarSequenciaNoElemento(_elemento) {
 		sequenciaPainel.appendChild(componenteTitulo)
 		sequenciaPainel.appendChild(componenteCorpo);
 		sequenciaPainel.setAttribute('id', opcoes.nome);

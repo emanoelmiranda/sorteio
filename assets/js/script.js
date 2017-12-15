@@ -1,12 +1,20 @@
-var interval,
-		listaDeNumerosParaSorteio		= document.querySelector('#lista-de-numeros ul'),
-		listaDeNumerosSorteados 		= document.querySelector('#lista-de-numeros-sorteados ul'),
-		botaoSortear 								= document.querySelector('button'),
-		sorteio 										= new Sorteio(),
-		painelDeSequencias					= document.querySelector('#sequencias-numericas'),
-		listaDeSequencias						= [],
-		listaDeSequenciasVencedoras = [],
-		sorteioEvento;
+/**
+ * Está função prepara o sorteio em geral.
+ */
+;(function () {
+	var interval,
+			listaDeNumerosParaSorteio		= document.querySelector('#lista-de-numeros ul'),
+			listaDeNumerosSorteados 		= document.querySelector('#lista-de-numeros-sorteados ul'),
+			botaoSortear 								= document.querySelector('button'),
+			sorteio 										= new Sorteio(),
+			painelDeSequencias					= document.querySelector('#sequencias-numericas'),
+			painelNumeroAtual 					= document.querySelector('#painel-numero-atual'),
+			elementoTentativaAtual 			= document.querySelector('#tentativa-atual'),
+			painelSequenciasVencedoras  = document.querySelector('#painel-sequencias-vencedoras'),
+			listaDeSequencias						= [],
+			listaDeSequenciasVencedoras = [],
+			botaoPrepararNovoSorteio		= document.querySelector('.preparar-novo-sorteio'),
+			sorteioEvento;
 
 sorteioEvento	= {
 	sairamTodosOsNumeros: function (nomeDaSequenciaVencedora) {
@@ -14,20 +22,28 @@ sorteioEvento	= {
 			
 			clearInterval(interval);
 
-			var painelNumeroAtual = document.querySelector('#painel-sequencias-vencedoras');
+			painelSequenciasVencedoras.innerHTML = listaDeSequenciasVencedoras.toString();
 
-			painelNumeroAtual.innerHTML = listaDeSequenciasVencedoras.toString();
+			inserirNomesDasSequeciasVencedorasNoPainel(listaDeSequenciasVencedoras.toString())
+
+			desbloquearBotaoSortear();
 	}
-};
+}
 
-var adicionarNumeroNaListaDeNumerosSorteados = function (numero) {
+/**
+ * Criar um elemento DOM LI com o número atual passado.
+ *
+ * @param int numero
+ * @return DOMElement retorna uma LI
+ */
+function criarElementoDOMLIDoNumeroPassado(numero) {
 	var itemNumero = document.createElement('LI')
 
 	itemNumero.innerHTML = numero;
 	itemNumero.setAttribute('id', 'numero-' + numero);
 
 	return itemNumero;
-};
+}
 
 /**
  * Carrega sequências númericas a serem sorteadas.
@@ -36,11 +52,14 @@ var adicionarNumeroNaListaDeNumerosSorteados = function (numero) {
  * @param int totalDeNumerosPorSequencia
  * @return void
  */
-var carregarSequenciasNumericas = function (totalDeSequencias, totalDeNumerosPorSequencia) {
+function carregarSequenciasNumericas(totalDeSequencias, totalDeNumerosPorSequencia) {
 	totalDeSequencias = totalDeSequencias || 6;
 	totalDeNumerosPorSequencia = totalDeNumerosPorSequencia || 6;
 
 	var listas = [];
+
+	painelDeSequencias.innerHTML = '';
+	listaDeSequencias = [];
 
 	for (var i = 0; i < totalDeSequencias; i++) {
 		listas[i] = sorteio.sortearSequenciaNumerica(totalDeNumerosPorSequencia);
@@ -55,56 +74,179 @@ var carregarSequenciasNumericas = function (totalDeSequencias, totalDeNumerosPor
 		
 		listaDeSequencias[i] = new Sequencia(painelDeSequencias, opcoes);
 	}
-};
+}
 
 /**
  * Informa as sequencias númericas os números sorteados.
  *
  * @param numeroArualSorteado int número atual sorteado
  */
-var informarSequencias = function (numeroAtualSorteado) {
+function informarSequencias(numeroAtualSorteado) {
 		for (var i = 0; i < listaDeSequencias.length; i++) {
 			listaDeSequencias[i].notificarSequencia({
 				numeroAtualSorteado: numeroAtualSorteado
 			});
 		}
-};
+}
 
-var carregarListaDeNumeros = function (element, _arrayDeNumeros) {
+/**
+ * Prepara o painel dos possíveis números a serem sorteados.
+ *
+ * @param elemento
+ */
+function carregarListaDeNumeros(elemento, _arrayDeNumeros) {
 	var arrayDeNumeros = _arrayDeNumeros;
-	element.innerHTML  = '';
+	elemento.innerHTML  = '';
 
 	for (var i = 0; i < arrayDeNumeros.length; i++) {
-		element.appendChild(adicionarNumeroNaListaDeNumerosSorteados(arrayDeNumeros[i]));
+		elemento.appendChild(criarElementoDOMLIDoNumeroPassado(arrayDeNumeros[i]));
 	}
+}
+
+/**
+ * Bloqueia o botão de sorteio.
+ *
+ * @return void
+ */
+function bloquearBotaoSortear() {
+	botaoSortear.classList.add('botao-bloqueado');
+	botaoSortear.setAttribute('disable', true);
+	botaoSortear.textContent = 'Sorteando...';
+	botaoSortear.removeEventListener('click', iniciaSorteio);
+}
+
+/**
+ * Desbloqueia o botão de sorteio
+ *
+ * @return void
+ */
+function desbloquearBotaoSortear() {
+	botaoSortear.classList.remove('botao-bloqueado');
+	botaoSortear.removeAttribute('disable');
+	botaoSortear.textContent = 'Iniciar sorteio';
+
+	botaoSortear.removeEventListener('click', reiniciarSorteio);
+	botaoSortear.addEventListener('click', reiniciarSorteio);
+}
+
+/**
+ * Prepara um novo sorteio
+ *
+ * @return void
+ */
+function reiniciarSorteio() {
+	prepararNovoSorteio();
+	iniciaSorteio();
+}
+
+/**
+ * Insere o número atual sorteado no painel.
+ *
+ * @param int numeroAtual Número atual sorteado.
+ * @return void
+ */
+function inserirNumeroAtualSorteadoNoPainel(numeroAtual) {
+	painelNumeroAtual.innerHTML = numeroAtual;
+}
+
+function inserirNomesDasSequeciasVencedorasNoPainel() {
+
+}
+
+/**
+ * Insere o número de tentativas no painel.
+ *
+ * @param int numeroDeTentativas Número de tentativas.
+ * @return void
+ */
+function inserirNumeroDeTentativasNoPainel(numeroDeTentativas) {
+	elementoTentativaAtual.innerHTML = numeroDeTentativas;
+}
+
+/**
+ * Marca o número atual sorteado no painel dos possíveis números a serem sorteados.
+ *
+ * @param int numero Número atual sorteado
+ * @return void 
+ */
+function marcarNumeroSorteado(numero) {
+	var elementoNumeroAtualSorteado = document.querySelector('#numero-' + numero);	
+	elementoNumeroAtualSorteado.classList.add('numero-sorteado');
+}
+
+/**
+ * Adicionar número atual à lista de números sorteados.
+ *
+ * @param int numero Número atual sorteado.
+ * @return void
+ */
+function adicionarNumeroNaListaDeNumerosSorteados(numero) {
+	listaDeNumerosSorteados.appendChild(criarElementoDOMLIDoNumeroPassado(numero));	
+}
+
+/**
+ * Limpa de lista de números sorteados.
+ *
+ * @return void
+ */
+function limparListaDeNumerosSorteados() {
+	listaDeNumerosSorteados.innerHTML = '';
+}
+
+/**
+ * Reinicia array com nome das sequencias vencedoras.
+ *
+ * @return void
+ */
+function zerarSequenciaVencedora() {
+	listaDeSequenciasVencedoras = [];
+	painelSequenciasVencedoras.innerHTML = '';
 };
 
 /**
- * Inicializa sorteio de sequencias numéricas.
+ * 
  */
-var iniciaSorteio = function () {
+function prepararNovoSorteio() {
+	sorteio.reiniciarSorteio();
+
+	var itensDalistaDeNumeros = listaDeNumerosParaSorteio.querySelectorAll('li');
+
+	for (var i in itensDalistaDeNumeros) {
+		if (itensDalistaDeNumeros.hasOwnProperty(i)) {
+			itensDalistaDeNumeros[i].classList.remove('numero-sorteado');
+		}
+	}
+
+	carregarSequenciasNumericas();
+	limparListaDeNumerosSorteados();
+	zerarSequenciaVencedora();
+}
+
+/**
+ * Inicializa sorteio de sequencias numéricas.
+ *
+ * @return void
+ */
+function iniciaSorteio() {
 		var tentativa = 1;
+
+		bloquearBotaoSortear();
 
 		interval = setInterval(function () {
 			sorteio.sortear();
-			
+
 			var numero = sorteio.retornarNumeroSorteado();
 
-			listaDeNumerosSorteados.appendChild(adicionarNumeroNaListaDeNumerosSorteados(numero));
-
-			var elementoNumeroAtualSorteado  = document.querySelector('#numero-' + numero);
-			var elementoTentativaAtual 			 = document.querySelector('#tentativa-atual');
-			var painelNumeroAtual 					 = document.querySelector('#painel-numero-atual');
-
-			elementoNumeroAtualSorteado.classList.add('numero-sorteado');
-			elementoTentativaAtual.innerHTML = sorteio.retornarNumeroDaTentativaAtual();
-			painelNumeroAtual.innerHTML 		 = numero;
-
+			adicionarNumeroNaListaDeNumerosSorteados(numero)
+			marcarNumeroSorteado(numero);
+			inserirNumeroDeTentativasNoPainel(sorteio.retornarNumeroDaTentativaAtual())
+			inserirNumeroAtualSorteadoNoPainel(numero);
 			informarSequencias(numero);
 		}, 250);
-};
+}
 
 botaoSortear.addEventListener('click', iniciaSorteio);
 
 carregarSequenciasNumericas();
 carregarListaDeNumeros(listaDeNumerosParaSorteio, sorteio.retornarArrayDeNumerosParaSorteio());
+} ());
