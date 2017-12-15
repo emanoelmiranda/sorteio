@@ -22,10 +22,7 @@ sorteioEvento	= {
 			
 			clearInterval(interval);
 
-			painelSequenciasVencedoras.innerHTML = listaDeSequenciasVencedoras.toString();
-
 			inserirNomesDasSequeciasVencedorasNoPainel(listaDeSequenciasVencedoras.toString())
-
 			desbloquearBotaoSortear();
 	}
 }
@@ -149,8 +146,14 @@ function inserirNumeroAtualSorteadoNoPainel(numeroAtual) {
 	painelNumeroAtual.innerHTML = numeroAtual;
 }
 
-function inserirNomesDasSequeciasVencedorasNoPainel() {
-
+/**
+ * Insere os nomes das sequências vencedoras no painel
+ *
+ * @param String nomesDasSequenciasVencedoras das sequências vencedoras
+ * @return void
+ */
+function inserirNomesDasSequeciasVencedorasNoPainel(nomesDasSequenciasVencedoras) {
+	painelSequenciasVencedoras.innerHTML = nomesDasSequenciasVencedoras;
 }
 
 /**
