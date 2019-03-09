@@ -1,172 +1,172 @@
 
 * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
-	padding: 0px;
-	margin: 0px;
-	font-size: 16px;
-	background-color: #757580;
+    font-family: 'Roboto', sans-serif;
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+    background-color: #757580;
 }
 
 h1 {
-	margin-top: 40px;
-	font-size: 40px;
+    margin-top: 40px;
+    font-size: 40px;
 }
 
 ul {
-	list-style: none;
+    list-style: none;
 }
 
 .container-principal {
-	width: 1170px;
-	margin: 0 auto;
+    width: 1170px;
+    margin: 0 auto;
 }
 
 .container-sorteio {
-	float: left;
-	width: 800px;
-	background-color: #fff;
-	margin-top: 20px;
-	border-radius: 10px;
-	padding: 0 20px 20px 20px;
-	box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    float: left;
+    width: 800px;
+    background-color: #fff;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 0 20px 20px 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
 }
 
 .container-sequencias {
-	position: fixed;
-	top: 0;
-	right: 0;
-	margin-top: 20px;
-	border-radius: 5px;
-	margin-right: 10px;
-	width: 274px;
-	padding: 20px;
-	box-shadow: 0px 0px 5px rgba(0,0,0,.5);
-	background-color: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 274px;
+    padding: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+    background-color: #fff;
 }
 
 .linha {
-	display: table;
-	width: 100%;
+    display: table;
+    width: 100%;
 }
 
 .coluna-3 {
-	float: left;
-	width: 33%;
+    float: left;
+    width: 33%;
 }
 
 .alinhar-texto-centro {
-	text-align: center;	
+    text-align: center;
 }
 
 .alinhar-texto-justificado {
-	text-align: justify;
+    text-align: justify;
 }
 
 #lista-de-numeros,
 #lista-de-numeros-sorteados {
-	margin-top: 40px;
-	margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 30px;
 }
 
 #sequencias-numericas {
-	padding-top: 25px;
+    padding-top: 25px;
 }
 
 #lista-de-numeros-sorteados ul,
 #lista-de-numeros ul,
 #sequencias-numericas > div {
-	display: table;
-	margin-top: 10px;
+    display: table;
+    margin-top: 10px;
 }
 
 #lista-de-numeros ul li,
 #lista-de-numeros-sorteados ul li,
 #sequencias-numericas > div span {
-	width: 35px;
-	height: 35px;
-	float: left;
-	line-height: 35px;
-	text-align: center;
-	display: inline-block;;
-	border: 1px solid #ccc;
-	margin: 2px;
-	border-radius: 3px;
+    width: 35px;
+    height: 35px;
+    float: left;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;;
+    border: 1px solid #ccc;
+    margin: 2px;
+    border-radius: 3px;
 }
 
 #lista-de-numeros-sorteados h4 {
-	text-align: center;
+    text-align: center;
 }
 
-#painel-botao{
-	text-align: center;
-	margin-top: 20px;
+#painel-botao {
+    text-align: center;
+    margin-top: 20px;
 }
 
 #painel-de-andamento {
-	color: #fff;
-	background-color: #888;
-	font-size: 18px;
-	margin-top: 20px;
-	min-height: 80px;
-	padding: 20px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-}	
+    color: #fff;
+    background-color: #888;
+    font-size: 18px;
+    margin-top: 20px;
+    min-height: 80px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
 
 button {
-	outline: none;
-	padding: 10px 15px;
-	font-size: 14px;
-	border: 1px solid #F00;
-	background-color: #E00;
-	color: #fff;
-	border-radius: 3px;
-	box-shadow: 3px 3px 3px rgba(0,0,0,.3);
-	font-weight: bolder;
-	cursor: pointer;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #F00;
+    background-color: #E00;
+    color: #fff;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    font-weight: bolder;
+    cursor: pointer;
 }
 
 button:active {
-	box-shadow: inset 3px 3px 3px rgba(0,0,0,.3);
+    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, .3);
 }
 
 .link-github {
-	margin-top: 10px;
-	text-align: center;
-	clear: both;;
+    margin-top: 10px;
+    text-align: center;
+    clear: both;;
 }
 
 .numero-sorteado {
-	background-color: #ccc;
-	color: #fff;
-	box-shadow: inset 2px 2px 2px rgba(0,0,0,.5) !important;
-	animation: numeroSorteado 1s ease-in;
+    background-color: #ccc;
+    color: #fff;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .5) !important;
+    animation: numeroSorteado 1s ease-in;
 }
 
 #painel-sequencias-vencedoras {
-	color: #0F0;
-	animation: numeroSorteado 1s ease-in;
+    color: #0F0;
+    animation: numeroSorteado 1s ease-in;
 }
 
 @keyframes numeroSorteado {
-	from {
-		transform: scale(2);
-	}
+    from {
+        transform: scale(2);
+    }
 
-	to {
-		transform: scale(1);
-	}
+    to {
+        transform: scale(1);
+    }
 }
 
 .botao-bloqueado {
-	border-color: #ccc;
-	background-color: #ccc;
-	cursor: not-allowed;
-	box-shadow: inset 3px 3px 3px rgba(0,0,0,.3);
+    border-color: #ccc;
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, .3);
 }
