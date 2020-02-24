@@ -249,6 +249,7 @@ button:active {
 
     .container-sequencias {
         width: 100%;
+        height: auto;
     }
 
     .sequencia-vencedora {
