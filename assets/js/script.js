@@ -163,6 +163,6 @@
 
     botaoSortear.addEventListener('click', iniciaSorteio);
 
-    carregarSequenciasNumericas(500);
+    carregarSequenciasNumericas();
     carregarListaDeNumeros(listaDeNumerosParaSorteio, sorteio.retornarArrayDeNumerosParaSorteio());
 }());
