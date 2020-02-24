@@ -78,7 +78,7 @@
     function bloquearBotaoSortear() {
         botaoSortear.classList.add('botao-bloqueado');
         botaoSortear.setAttribute('disable', true);
-        botaoSortear.textContent = 'Sorteando...';
+        botaoSortear.textContent = 'SORTEANDO...';
         botaoSortear.removeEventListener('click', iniciaSorteio);
     }
 
