@@ -4,25 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sorteio de números</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/estilo.css">
 </head>
 <body>
 <div class="container-principal">
     <div class="container-sorteio">
-        <h1 class="alinhar-texto-centro">Sorteio de números</h1>
         <div id="painel-de-andamento">
             <div class="linha">
-                <div class="coluna-3 alinhar-texto-centro">
-                    <div>Nº DE TENTATIVAS</div>
-                    <div id="tentativa-atual">0</div>
+                <div class="coluna-3">
+                    <h2>Nº DE TENTATIVAS</h2>
+                    <h1 id="tentativa-atual">0</h1>
                 </div>
-                <div class="coluna-3 alinhar-texto-centro">
-                    <div>ÚLTIMO NÚMERO</div>
-                    <div id="painel-numero-atual"></div>
+                <div class="coluna-3">
+                    <h2>ÚLTIMO NÚMERO</h2>
+                    <h1 id="painel-numero-atual"></h1>
                 </div>
-                <div class="coluna-3 alinhar-texto-centro">
-                    <div>SEQUÊNCIA VENCEDORA</div>
+                <div class="coluna-3">
+                    <h2>SEQUÊNCIA VENCEDORA</h2>
                     <div id="painel-sequencias-vencedoras"></div>
                 </div>
             </div>
@@ -30,7 +29,7 @@
         <div id="lista-de-numeros">
             <ul></ul>
             <div id="painel-botao">
-                <button id="sortear">Iniciar sorteio</button>
+                <button id="sortear">SORTEAR</button>
             </div>
         </div>
         <div id="lista-de-numeros-sorteados">
@@ -38,13 +37,11 @@
             <ul></ul>
         </div>
         <div class="link-github">
-            <a href="https://github.com/calvarioel/Sorteio">GitHub</a>
+            <a href="https://github.com/emanoelmiranda/sorteio">GitHub</a>
         </div>
     </div>
     <div class="container-sequencias ">
-        <h3 class="alinhar-texto-centro">
-            Sequências numericas de 6 algarismos geradas aleatóriamente de 1 à 60
-        </h3>
+        <h2>SEQUÊNCIAS NUMÉRICAS</h2>
         <div id="sequencias-numericas"></div>
     </div>
 </div>

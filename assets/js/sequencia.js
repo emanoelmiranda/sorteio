@@ -1,7 +1,4 @@
-var Sequencia = function (elemento, opcoes) {
-    /**
-     * Configuração padrão.
-     */
+const Sequencia = function (elemento, opcoes) {
     opcoes = opcoes || {
         nome: '',
         listaDeNumeros: [],
@@ -12,31 +9,26 @@ var Sequencia = function (elemento, opcoes) {
         }
     };
 
-    var that = this,
-        totalDeNumerosSorteados = 0,
+    const that = this,
         sequenciaPainel = document.createElement('DIV'),
-        componenteTitulo = document.createElement('DIV'),
-        componenteCorpo = document.createElement('DIV');
+        componenteTitulo = document.createElement('H4'),
+        componenteLista = document.createElement('UL');
 
-    /**
-     * Adicionar número da interface gráfica (html)
-     *
-     * @param array lista array de números a serem renderizados
-     * @param return void
-     */
+    let totalDeNumerosSorteados = 0;
+
     function adicionarItensNaLista(lista) {
-        for (var i = 0; i < lista.length; i++) {
-            var elementoNumeroDaSequencia = document.createElement('SPAN');
+        for (let i = 0; i < lista.length; i++) {
+            const elementoNumeroDaSequencia = document.createElement('LI');
 
             elementoNumeroDaSequencia.setAttribute('data-value', lista[i]);
             elementoNumeroDaSequencia.innerHTML = lista[i];
-            componenteCorpo.appendChild(elementoNumeroDaSequencia);
+            componenteLista.appendChild(elementoNumeroDaSequencia);
         }
     };
 
     function adicionarSequenciaNoElemento(_elemento) {
-        sequenciaPainel.appendChild(componenteTitulo)
-        sequenciaPainel.appendChild(componenteCorpo);
+        sequenciaPainel.appendChild(componenteTitulo);
+        sequenciaPainel.appendChild(componenteLista);
         sequenciaPainel.setAttribute('id', opcoes.nome);
 
         componenteTitulo.innerHTML = opcoes.nome;
@@ -44,14 +36,10 @@ var Sequencia = function (elemento, opcoes) {
         _elemento.appendChild(sequenciaPainel);
     };
 
-    /**
-     * Método recebe a notificação do sorteio informando
-     * último número sorteado.
-     */
     this.notificarSequencia = function (notificacao) {
         notificacao = notificacao || {numeroAtualSorteado: null};
 
-        var numerosSorteado = sequenciaPainel.querySelector('[data-value="' + notificacao.numeroAtualSorteado + '"]');
+        const numerosSorteado = sequenciaPainel.querySelector(`[data-value="${notificacao.numeroAtualSorteado}"]`);
 
         if (numerosSorteado !== null) {
             numerosSorteado.classList.add('numero-sorteado');
@@ -60,16 +48,11 @@ var Sequencia = function (elemento, opcoes) {
 
         if (totalDeNumerosSorteados === 6) {
             opcoes.evento.sairamTodosOsNumeros(opcoes.nome);
+            sequenciaPainel.classList.add('sequencia-vencedora');
         }
     };
 
-    /**
-     * Inicializa a sequência.
-     *
-     * @param Object opcoes objeto literal com configurações do objeto.
-     * @param elemento elemnto html para ser manipulado
-     */
-    var init = function (opcoes, elemento) {
+    const init = function (opcoes, elemento) {
         adicionarSequenciaNoElemento(elemento);
         adicionarItensNaLista(opcoes.listaDeNumeros);
 

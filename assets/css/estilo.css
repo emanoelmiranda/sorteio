@@ -1,4 +1,6 @@
 
+
+
 * {
     padding: 0;
     margin: 0;
@@ -6,15 +8,15 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    padding: 0px;
-    margin: 0px;
+    font-family: 'Anton', sans-serif;
+    padding: 0;
+    margin: 0;
     font-size: 16px;
     background-color: #757580;
+    overflow: hidden;
 }
 
 h1 {
-    margin-top: 40px;
     font-size: 40px;
 }
 
@@ -23,31 +25,27 @@ ul {
 }
 
 .container-principal {
-    width: 1170px;
-    margin: 0 auto;
+    width: 100%;
+    display: flex;
 }
 
 .container-sorteio {
-    float: left;
-    width: 800px;
     background-color: #fff;
-    margin-top: 20px;
-    border-radius: 10px;
-    padding: 0 20px 20px 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+    width: 70%;
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .container-sequencias {
-    position: fixed;
-    top: 0;
-    right: 0;
-    margin-top: 20px;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: 274px;
-    padding: 20px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, .5);
+    width: 30%;
     background-color: #fff;
+    height: 100vh;
+}
+
+.container-sequencias > h2 {
+    padding: 30px 10px;
+    background-color: #f5f5f5;
+    text-align: center;
 }
 
 .linha {
@@ -58,45 +56,42 @@ ul {
 .coluna-3 {
     float: left;
     width: 33%;
-}
-
-.alinhar-texto-centro {
     text-align: center;
-}
-
-.alinhar-texto-justificado {
-    text-align: justify;
 }
 
 #lista-de-numeros,
 #lista-de-numeros-sorteados {
-    margin-top: 40px;
     margin-bottom: 30px;
 }
 
 #sequencias-numericas {
     padding-top: 25px;
+    overflow-y: auto;
+    height: calc(100vh - 87px);
+    position: relative;
 }
 
 #lista-de-numeros-sorteados ul,
 #lista-de-numeros ul,
-#sequencias-numericas > div {
-    display: table;
+#sequencias-numericas ul {
     margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #lista-de-numeros ul li,
 #lista-de-numeros-sorteados ul li,
-#sequencias-numericas > div span {
-    width: 35px;
-    height: 35px;
-    float: left;
-    line-height: 35px;
-    text-align: center;
-    display: inline-block;;
+#sequencias-numericas ul li {
+    width: 60px;
+    height: 60px;
     border: 1px solid #ccc;
-    margin: 2px;
-    border-radius: 3px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #222;
 }
 
 #lista-de-numeros-sorteados h4 {
@@ -110,30 +105,27 @@ ul {
 
 #painel-de-andamento {
     color: #fff;
-    background-color: #888;
-    font-size: 18px;
-    margin-top: 20px;
+    background-color: #222;
+    font-size: 20px;
     min-height: 80px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
+    padding: 30px;
+    margin-bottom: 10px;
 }
 
 button {
     outline: none;
-    padding: 10px 15px;
-    font-size: 14px;
+    padding: 16px 22px;
+    font-size: 16px;
     border: 1px solid #F00;
     background-color: #E00;
     color: #fff;
-    border-radius: 3px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
-    font-weight: bolder;
+    border-radius: 2px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, .3);
     cursor: pointer;
 }
 
 button:active {
-    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, .3);
+    box-shadow: inset 2px 2px 3px rgba(0, 0, 0, .3);
 }
 
 .link-github {
@@ -145,7 +137,7 @@ button:active {
 .numero-sorteado {
     background-color: #ccc;
     color: #fff;
-    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .5) !important;
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .3) !important;
     animation: numeroSorteado 1s ease-in;
 }
 
@@ -162,6 +154,45 @@ button:active {
     to {
         transform: scale(1);
     }
+}
+
+@keyframes vencedora {
+    from {
+        transform: scale(1.1);
+        top: 100px;
+        right: 0%;
+        margin-left: -100%;
+        position: fixed;
+    }
+
+    to {
+        position: fixed;
+        top: 50%;
+        margin-top: -47.5px;
+        right: 50%;
+        margin-right: -25em;
+        transform: scale(2);
+    }
+}
+
+#sequencias-numericas ul  {
+    min-width: 400px;
+    max-width: 560px;
+    background-color: #fff;
+    padding: 10px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#sequencias-numericas h4 {
+    font-weight: 100;
+    text-align: center;
+}
+
+.sequencia-vencedora {
+
 }
 
 .botao-bloqueado {
