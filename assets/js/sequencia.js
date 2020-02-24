@@ -16,12 +16,12 @@ const Sequencia = function (elemento, opcoes) {
 
     let totalDeNumerosSorteados = 0;
 
-    function adicionarItensNaLista(lista) {
-        for (let i = 0; i < lista.length; i++) {
+    function adicionarItensNaLista(_listaDeNumeros) {
+        for (let _lista of _listaDeNumeros) {
             const elementoNumeroDaSequencia = document.createElement('LI');
 
-            elementoNumeroDaSequencia.setAttribute('data-value', lista[i]);
-            elementoNumeroDaSequencia.innerHTML = lista[i];
+            elementoNumeroDaSequencia.setAttribute('data-value', _lista);
+            elementoNumeroDaSequencia.innerHTML = _lista;
             componenteLista.appendChild(elementoNumeroDaSequencia);
         }
     };

@@ -4,8 +4,7 @@ const Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 
     let arrayDeNumeros = [],
         numeroDeTentativas = 0,
-        arrayDeNumerosSorteados = [],
-        numeroAtualSorteado;
+        arrayDeNumerosSorteados = [];
 
     const that = this;
 
@@ -60,8 +59,8 @@ const Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
         arrayDeNumerosSorteados = [];
         numeroDeTentativas = 0;
 
-        for (let i = 0; i < arrayDeNumeros.length; i++) {
-            arrayDeNumeros[i].sorteado = false;
+        for (let itemDoArrayDeNumeros of arrayDeNumeros) {
+            itemDoArrayDeNumeros.sorteado = false;
         }
     };
 

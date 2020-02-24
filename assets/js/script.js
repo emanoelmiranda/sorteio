@@ -7,7 +7,6 @@
         painelNumeroAtual = document.querySelector('#painel-numero-atual'),
         elementoTentativaAtual = document.querySelector('#tentativa-atual'),
         painelSequenciasVencedoras = document.querySelector('#painel-sequencias-vencedoras'),
-        botaoPrepararNovoSorteio = document.querySelector('.preparar-novo-sorteio'),
         sorteio = new Sorteio();
 
     let interval,
@@ -21,7 +20,7 @@
 
             clearInterval(interval);
 
-            inserirNomesDasSequeciasVencedorasNoPainel(listaDeSequenciasVencedoras.toString())
+            inserirNomesDasSequeciasVencedorasNoPainel(listaDeSequenciasVencedoras.toString());
             desbloquearBotaoSortear();
         }
     };
@@ -30,7 +29,7 @@
         const itemNumero = document.createElement('LI');
 
         itemNumero.innerHTML = numero;
-        itemNumero.setAttribute('id', 'numero-' + numero);
+        itemNumero.setAttribute('id', `numero-${numero}`);
 
         return itemNumero;
     };
@@ -60,8 +59,8 @@
     }
 
     function informarSequencias(numeroAtualSorteado) {
-        for (let i = 0; i < listaDeSequencias.length; i++) {
-            listaDeSequencias[i].notificarSequencia({
+        for (let listaDeSequencia of listaDeSequencias) {
+            listaDeSequencia.notificarSequencia({
                 numeroAtualSorteado: numeroAtualSorteado
             });
         }
@@ -71,8 +70,8 @@
         let arrayDeNumeros = _arrayDeNumeros;
         elemento.innerHTML = '';
 
-        for (let i = 0; i < arrayDeNumeros.length; i++) {
-            elemento.appendChild(criarElementoDOMLIDoNumeroPassado(arrayDeNumeros[i]));
+        for (let numero of arrayDeNumeros) {
+            elemento.appendChild(criarElementoDOMLIDoNumeroPassado(numero));
         }
     }
 
@@ -144,8 +143,6 @@
     }
 
     function iniciaSorteio() {
-        let tentativa = 1;
-
         bloquearBotaoSortear();
 
         interval = setInterval(function () {
