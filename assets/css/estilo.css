@@ -232,6 +232,7 @@ button:active {
 
     .container-sorteio {
         width: 100%;
+        height: auto;
     }
 
     #lista-de-numeros ul li,
@@ -248,5 +249,11 @@ button:active {
 
     .container-sequencias {
         width: 100%;
+    }
+
+    .sequencia-vencedora {
+        width: 80%;
+        left: 20%;
+        margin-left: 0;
     }
 }
