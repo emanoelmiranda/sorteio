@@ -172,10 +172,24 @@ button:active {
 @keyframes vencedora {
     from {
         transform: scale(1.2);
+        position: fixed;
+        top: 50%;
+        margin-top: -60px;
+        width: 33%;
+        left: 50%;
+        margin-left: -15%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
     }
 
     to {
         transform: scale(1);
+        position: fixed;
+        top: 50%;
+        margin-top: -60px;
+        width: 33%;
+        left: 50%;
+        margin-left: -15%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
     }
 }
 
@@ -193,17 +207,8 @@ button:active {
 .sequencia-vencedora {
     background-color: #badc58;
     animation: vencedora;
-    animation-iteration-count: 10;
+    animation-iteration-count: 4;
     animation-duration: 1s;
-    position: fixed;
-    top: 50%;
-    margin-top: -60px;
-    width: 33%;
-    left: 50%;
-    margin-left: -15%;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-    color: #fff !important;
 }
 
 .botao-bloqueado {

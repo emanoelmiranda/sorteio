@@ -8,36 +8,27 @@ const Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
 
     const that = this;
 
-    const carregarArrayNumeros = function () {
-        for (let i = 0; i < totalDeNumeros; i++) {
-            arrayDeNumeros[i] = {
-                valor: i + 1,
-                sorteado: false
-            };
-        }
+    const carregarArrayNumeros = () => {
+        for (let i = 0; i < totalDeNumeros; i++)
+            arrayDeNumeros[i] = {valor: i + 1, sorteado: false };
 
         return that;
     };
 
-    const algoritmoRandomico = function () {
-        return Math.floor(Math.random() * 100);
-    };
+    const algoritmoRandomico = () => Math.floor(Math.random() * 100);
 
-    this.retornarArrayDeNumerosParaSorteio = function () {
+    this.retornarArrayDeNumerosParaSorteio = () => {
         let listaDeNumeros = [];
 
-        for (let i = 0; i < arrayDeNumeros.length; i++) {
+        for (let i = 0; i < arrayDeNumeros.length; i++)
             listaDeNumeros[i] = arrayDeNumeros[i].valor;
-        }
 
         return listaDeNumeros;
     };
 
-    this.retornarArrayDeNumerosSorteados = function () {
-        return arrayDeNumerosSorteados;
-    };
+    this.retornarArrayDeNumerosSorteados = () => arrayDeNumerosSorteados;
 
-    this.sortear = function () {
+    this.sortear = () => {
         let chaveParaSortearNumero = algoritmoRandomico();
 
         if (
@@ -50,36 +41,28 @@ const Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
             arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
             arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
             numeroDeTentativas++;
-        } else {
+        } else
             that.sortear();
-        }
     };
 
-    this.reiniciarSorteio = function () {
+    this.reiniciarSorteio = () => {
         arrayDeNumerosSorteados = [];
         numeroDeTentativas = 0;
 
-        for (let itemDoArrayDeNumeros of arrayDeNumeros) {
+        for (let itemDoArrayDeNumeros of arrayDeNumeros)
             itemDoArrayDeNumeros.sorteado = false;
-        }
     };
 
-    this.retornarNumeroDaTentativaAtual = function () {
-        return numeroDeTentativas;
-    };
+    this.retornarNumeroDaTentativaAtual = () => numeroDeTentativas;
 
-    this.retornarNumeroSorteado = function (numeroDaTentativa) {
-        numeroDaTentativa = numeroDaTentativa || that.retornarNumeroDaTentativaAtual();
+    this.retornarNumeroSorteado = (numeroDaTentativa) =>
+        arrayDeNumerosSorteados[numeroDaTentativa || that.retornarNumeroDaTentativaAtual() - 1];
 
-        return arrayDeNumerosSorteados[numeroDaTentativa - 1];
-    };
-
-    this.sortearSequenciaNumerica = function (totalDeNumerosDaSequencia) {
+    this.sortearSequenciaNumerica = (totalDeNumerosDaSequencia) => {
         totalDeNumerosDaSequencia = totalDeNumerosDaSequencia || 6;
 
-        for (let i = 0; i < totalDeNumerosDaSequencia; i++) {
+        for (let i = 0; i < totalDeNumerosDaSequencia; i++)
             that.sortear();
-        }
 
         let arrayDeNumerosSorteados = that.retornarArrayDeNumerosSorteados();
 

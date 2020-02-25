@@ -3,9 +3,7 @@ const Sequencia = function (elemento, opcoes) {
         nome: '',
         listaDeNumeros: [],
         evento: {
-            sairamTodosOsNumeros: function () {
-                console.log('Foi tudo!!!')
-            }
+            sairamTodosOsNumeros: () => console.log('Foi tudo!!!')
         }
     };
 
@@ -16,7 +14,7 @@ const Sequencia = function (elemento, opcoes) {
 
     let totalDeNumerosSorteados = 0;
 
-    function adicionarItensNaLista(_listaDeNumeros) {
+    const adicionarItensNaLista = (_listaDeNumeros) => {
         for (let _lista of _listaDeNumeros) {
             const elementoNumeroDaSequencia = document.createElement('LI');
 
@@ -26,7 +24,7 @@ const Sequencia = function (elemento, opcoes) {
         }
     };
 
-    function adicionarSequenciaNoElemento(_elemento) {
+    const adicionarSequenciaNoElemento = (_elemento) => {
         sequenciaPainel.appendChild(componenteTitulo);
         sequenciaPainel.appendChild(componenteLista);
         sequenciaPainel.setAttribute('id', opcoes.nome);
@@ -36,7 +34,7 @@ const Sequencia = function (elemento, opcoes) {
         _elemento.appendChild(sequenciaPainel);
     };
 
-    this.notificarSequencia = function (notificacao) {
+    this.notificarSequencia = (notificacao) => {
         notificacao = notificacao || {numeroAtualSorteado: null};
 
         const numerosSorteado = sequenciaPainel.querySelector(`[data-value="${notificacao.numeroAtualSorteado}"]`);
@@ -52,7 +50,7 @@ const Sequencia = function (elemento, opcoes) {
         }
     };
 
-    const init = function (opcoes, elemento) {
+    const init = (opcoes, elemento) => {
         adicionarSequenciaNoElemento(elemento);
         adicionarItensNaLista(opcoes.listaDeNumeros);
 

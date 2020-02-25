@@ -15,7 +15,7 @@
         sorteioEvento;
 
     sorteioEvento = {
-        sairamTodosOsNumeros: function (nomeDaSequenciaVencedora) {
+        sairamTodosOsNumeros: (nomeDaSequenciaVencedora) => {
             listaDeSequenciasVencedoras.push(nomeDaSequenciaVencedora);
 
             clearInterval(interval);
@@ -25,7 +25,7 @@
         }
     };
 
-    function criarElementoDOMLIDoNumeroPassado(numero) {
+    const criarElementoDOMLIDoNumeroPassado = (numero) => {
         const itemNumero = document.createElement('LI');
 
         itemNumero.innerHTML = numero;
@@ -34,7 +34,7 @@
         return itemNumero;
     };
 
-    function carregarSequenciasNumericas(totalDeSequencias, totalDeNumerosPorSequencia) {
+    const carregarSequenciasNumericas = (totalDeSequencias, totalDeNumerosPorSequencia) => {
         totalDeSequencias = totalDeSequencias || 6;
         totalDeNumerosPorSequencia = totalDeNumerosPorSequencia || 6;
 
@@ -43,9 +43,8 @@
         painelDeSequencias.innerHTML = '';
         listaDeSequencias = [];
 
-        for (let i = 0; i < totalDeSequencias; i++) {
+        for (let i = 0; i < totalDeSequencias; i++)
             listas[i] = sorteio.sortearSequenciaNumerica(totalDeNumerosPorSequencia);
-        }
 
         for (let i = 0; i < listas.length; i++) {
             const opcoes = {
@@ -56,96 +55,88 @@
 
             listaDeSequencias[i] = new Sequencia(painelDeSequencias, opcoes);
         }
-    }
+    };
 
-    function informarSequencias(numeroAtualSorteado) {
+    const informarSequencias = (numeroAtualSorteado) => {
         for (let listaDeSequencia of listaDeSequencias) {
             listaDeSequencia.notificarSequencia({
                 numeroAtualSorteado: numeroAtualSorteado
             });
         }
-    }
+    };
 
-    function carregarListaDeNumeros(elemento, _arrayDeNumeros) {
+    const carregarListaDeNumeros = (elemento, _arrayDeNumeros) => {
         let arrayDeNumeros = _arrayDeNumeros;
         elemento.innerHTML = '';
 
         for (let numero of arrayDeNumeros) {
             elemento.appendChild(criarElementoDOMLIDoNumeroPassado(numero));
         }
-    }
+    };
 
-    function bloquearBotaoSortear() {
+    const bloquearBotaoSortear = () => {
         botaoSortear.classList.add('botao-bloqueado');
         botaoSortear.setAttribute('disable', true);
         botaoSortear.textContent = 'SORTEANDO...';
         botaoSortear.removeEventListener('click', iniciaSorteio);
-    }
+    };
 
-    function desbloquearBotaoSortear() {
+    const desbloquearBotaoSortear = () => {
         botaoSortear.classList.remove('botao-bloqueado');
         botaoSortear.removeAttribute('disable');
         botaoSortear.textContent = 'Iniciar sorteio';
 
         botaoSortear.removeEventListener('click', reiniciarSorteio);
         botaoSortear.addEventListener('click', reiniciarSorteio);
-    }
+    };
 
-    function reiniciarSorteio() {
+    const reiniciarSorteio = () => {
         prepararNovoSorteio();
         iniciaSorteio();
-    }
+    };
 
-    function inserirNumeroAtualSorteadoNoPainel(numeroAtual) {
+    const inserirNumeroAtualSorteadoNoPainel = (numeroAtual) =>
         painelNumeroAtual.innerHTML = numeroAtual;
-    }
 
-    function inserirNomesDasSequeciasVencedorasNoPainel(nomesDasSequenciasVencedoras) {
+    const inserirNomesDasSequeciasVencedorasNoPainel = (nomesDasSequenciasVencedoras) =>
         painelSequenciasVencedoras.innerHTML = nomesDasSequenciasVencedoras;
-    }
 
-    function inserirNumeroDeTentativasNoPainel(numeroDeTentativas) {
+    const inserirNumeroDeTentativasNoPainel = (numeroDeTentativas) =>
         elementoTentativaAtual.innerHTML = numeroDeTentativas;
-    }
 
-    function marcarNumeroSorteado(numero) {
+    const marcarNumeroSorteado = (numero) => {
         const elementoNumeroAtualSorteado = document.querySelector(`#numero-${numero}`);
         elementoNumeroAtualSorteado.classList.add('numero-sorteado');
-    }
+    };
 
-    function adicionarNumeroNaListaDeNumerosSorteados(numero) {
+    const adicionarNumeroNaListaDeNumerosSorteados = (numero) =>
         listaDeNumerosSorteados.appendChild(criarElementoDOMLIDoNumeroPassado(numero));
-    }
 
-    function limparListaDeNumerosSorteados() {
-        listaDeNumerosSorteados.innerHTML = '';
-    }
+    const limparListaDeNumerosSorteados = () => listaDeNumerosSorteados.innerHTML = '';
 
-    function zerarSequenciaVencedora() {
+    const zerarSequenciaVencedora = () => {
         listaDeSequenciasVencedoras = [];
         painelSequenciasVencedoras.innerHTML = '';
     };
 
-    function prepararNovoSorteio() {
+    const prepararNovoSorteio = () => {
         sorteio.reiniciarSorteio();
 
         const itensDalistaDeNumeros = listaDeNumerosParaSorteio.querySelectorAll('li');
 
-        for (let i in itensDalistaDeNumeros) {
-            if (itensDalistaDeNumeros.hasOwnProperty(i)) {
+        for (let i in itensDalistaDeNumeros)
+            if (itensDalistaDeNumeros.hasOwnProperty(i))
                 itensDalistaDeNumeros[i].classList.remove('numero-sorteado');
-            }
-        }
 
         carregarSequenciasNumericas();
         limparListaDeNumerosSorteados();
         zerarSequenciaVencedora();
-    }
+    };
 
-    function iniciaSorteio() {
+    const iniciaSorteio = () => {
         bloquearBotaoSortear();
 
-        interval = setInterval(function () {
+        interval = setInterval(() => {
             sorteio.sortear();
 
             let numero = sorteio.retornarNumeroSorteado();
