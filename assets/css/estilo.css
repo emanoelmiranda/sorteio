@@ -258,9 +258,15 @@ button:active {
         margin-left: 0;
     }
 
+    #sequencias-numericas div {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
     #sequencias-numericas ul  {
-        padding: 10px;
-        height: 54px;
+        padding: 5px;
+        height: auto;
     }
 
     .container-sequencias > h2 {
