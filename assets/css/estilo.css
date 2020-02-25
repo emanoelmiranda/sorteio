@@ -219,11 +219,11 @@ button:active {
     }
 
     h2 {
-        font-size: 1em;
+        font-size: 0.80em;
     }
 
     h1 {
-        font-size: 1.5em;
+        font-size: 1em;
     }
 
     #painel-de-andamento {
@@ -238,9 +238,9 @@ button:active {
     #lista-de-numeros ul li,
     #lista-de-numeros-sorteados ul li,
     #sequencias-numericas ul li {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
     }
 
     .container-principal {
@@ -256,5 +256,14 @@ button:active {
         width: 80%;
         left: 10%;
         margin-left: 0;
+    }
+
+    #sequencias-numericas ul  {
+        padding: 10px;
+        height: 54px;
+    }
+
+    .container-sequencias > h2 {
+        padding: 20px 10px;
     }
 }
