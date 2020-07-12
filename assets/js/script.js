@@ -7,7 +7,7 @@
         painelNumeroAtual = document.querySelector('#painel-numero-atual'),
         elementoTentativaAtual = document.querySelector('#tentativa-atual'),
         painelSequenciasVencedoras = document.querySelector('#painel-sequencias-vencedoras'),
-        sorteio = new Sorteio();
+        sorteio = new Raffle();
 
     let interval,
         listaDeSequencias = [],

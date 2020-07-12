@@ -1,4 +1,4 @@
-const Sorteio = function (totalDeNumeros, quantidaDeNumeros) {
+const Raffle = function (totalDeNumeros, quantidaDeNumeros) {
     quantidaDeNumeros = quantidaDeNumeros || 6;
     totalDeNumeros = totalDeNumeros || 60;
 
