@@ -4,8 +4,8 @@
 
 ## Tecnologias utilizadas:
 
-- **[HTML](https://aka.ms/AA5k0dt)**
-- **[CSS](https://nodejs.org/en/)**
-- **[Javascript](https://vuejs.org/)**
+- **HTML**
+- **CSS**
+- **Javascript**
 
 Demo: [https://emanoelmiranda.github.io/sorteio/](https://emanoelmiranda.github.io/sorteio/index.html)
