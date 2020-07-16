@@ -1,75 +1,73 @@
 const Raffle = function (totalDeNumeros, quantidaDeNumeros) {
-    quantidaDeNumeros = quantidaDeNumeros || 6;
-    totalDeNumeros = totalDeNumeros || 60;
+  quantidaDeNumeros = quantidaDeNumeros || 6;
+  totalDeNumeros = totalDeNumeros || 60;
 
-    let arrayDeNumeros = [],
-        numeroDeTentativas = 0,
-        arrayDeNumerosSorteados = [];
+  let arrayDeNumeros = [],
+    numeroDeTentativas = 0,
+    arrayDeNumerosSorteados = [];
 
-    const that = this;
+  const carregarArrayNumeros = () => {
+    for (let i = 0; i < totalDeNumeros; i++)
+      arrayDeNumeros[i] = {valor: i + 1, sorteado: false };
 
-    const carregarArrayNumeros = () => {
-        for (let i = 0; i < totalDeNumeros; i++)
-            arrayDeNumeros[i] = {valor: i + 1, sorteado: false };
+    return this;
+  };
 
-        return that;
-    };
+  const algoritmoRandomico = () => Math.floor(Math.random() * 100);
 
-    const algoritmoRandomico = () => Math.floor(Math.random() * 100);
+  this.retornarArrayDeNumerosParaSorteio = () => {
+    let listaDeNumeros = [];
 
-    this.retornarArrayDeNumerosParaSorteio = () => {
-        let listaDeNumeros = [];
+    for (let i = 0; i < arrayDeNumeros.length; i++)
+      listaDeNumeros[i] = arrayDeNumeros[i].valor;
 
-        for (let i = 0; i < arrayDeNumeros.length; i++)
-            listaDeNumeros[i] = arrayDeNumeros[i].valor;
+    return listaDeNumeros;
+  };
 
-        return listaDeNumeros;
-    };
+  this.retornarArrayDeNumerosSorteados = () => arrayDeNumerosSorteados;
 
-    this.retornarArrayDeNumerosSorteados = () => arrayDeNumerosSorteados;
+  this.sortear = () => {
+    let chaveParaSortearNumero = algoritmoRandomico();
 
-    this.sortear = () => {
-        let chaveParaSortearNumero = algoritmoRandomico();
+    if (
+      chaveParaSortearNumero >= 0 &&
+      chaveParaSortearNumero < totalDeNumeros &&
+      arrayDeNumeros[chaveParaSortearNumero].sorteado === false
+    ) {
+      let numeroSorteado = arrayDeNumeros[chaveParaSortearNumero];
 
-        if (
-            chaveParaSortearNumero >= 0 &&
-            chaveParaSortearNumero < totalDeNumeros &&
-            arrayDeNumeros[chaveParaSortearNumero].sorteado === false
-        ) {
-            let numeroSorteado = arrayDeNumeros[chaveParaSortearNumero];
+      arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
+      arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
+      numeroDeTentativas++;
+    } else
+      this.sortear();
+  };
 
-            arrayDeNumerosSorteados[numeroDeTentativas] = numeroSorteado.valor;
-            arrayDeNumeros[chaveParaSortearNumero].sorteado = true;
-            numeroDeTentativas++;
-        } else
-            that.sortear();
-    };
+  this.reiniciarSorteio = () => {
+    arrayDeNumerosSorteados = [];
+    numeroDeTentativas = 0;
 
-    this.reiniciarSorteio = () => {
-        arrayDeNumerosSorteados = [];
-        numeroDeTentativas = 0;
+    for (let itemDoArrayDeNumeros of arrayDeNumeros)
+      itemDoArrayDeNumeros.sorteado = false;
+  };
 
-        for (let itemDoArrayDeNumeros of arrayDeNumeros)
-            itemDoArrayDeNumeros.sorteado = false;
-    };
+  this.retornarNumeroDaTentativaAtual = () => numeroDeTentativas;
 
-    this.retornarNumeroDaTentativaAtual = () => numeroDeTentativas;
+  this.retornarNumeroSorteado = (numeroDaTentativa) =>
+    arrayDeNumerosSorteados[numeroDaTentativa || this.retornarNumeroDaTentativaAtual() - 1];
 
-    this.retornarNumeroSorteado = (numeroDaTentativa) =>
-        arrayDeNumerosSorteados[numeroDaTentativa || that.retornarNumeroDaTentativaAtual() - 1];
+  this.sortearSequenciaNumerica = (totalDeNumerosDaSequencia) => {
+    totalDeNumerosDaSequencia = totalDeNumerosDaSequencia || 6;
 
-    this.sortearSequenciaNumerica = (totalDeNumerosDaSequencia) => {
-        totalDeNumerosDaSequencia = totalDeNumerosDaSequencia || 6;
+    for (let i = 0; i < totalDeNumerosDaSequencia; i++)
+      this.sortear();
 
-        for (let i = 0; i < totalDeNumerosDaSequencia; i++)
-            that.sortear();
+    let arrayDeNumerosSorteados = this.retornarArrayDeNumerosSorteados();
 
-        let arrayDeNumerosSorteados = that.retornarArrayDeNumerosSorteados();
+    this.reiniciarSorteio();
 
-        that.reiniciarSorteio();
+    return arrayDeNumerosSorteados;
+  };
 
-        return arrayDeNumerosSorteados;
-    };
-
-    return carregarArrayNumeros();
+  return carregarArrayNumeros();
 };
